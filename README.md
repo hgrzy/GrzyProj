@@ -12,25 +12,25 @@ GitHub Actions : [![Build Status](https://github.com/PsuAstro528/project-templat
 
 ## Overview
 
-This project takes data from the NASA JPL Horizons Database on Solar System objects. The code calculates the acceleration from the position, velocity, and masses of the objects. This is then integrated through time using the Leap Frog algorithm. This is then compared against NASA JPL Horizon's data for the date the simulator has been integrated to. 
+This project takes data from the NASA JPL Horizons Database on Solar System objects and/or can create a uniform distribution of identical particles in a given spherical shell. The code calculates the acceleration from the position, velocity, and masses of the objects. This is then integrated through time using the Euler or Verlet algorithms.
 
-This test is repeated for varying step sizes and integration times.
 
 ## File Breakdown
+- accel.jl has code to calculate the acceleration between bodies in the simulation
+- bodies.jl contains the body struct, a cookie cutter for each mass in the system
+- dictionaries.jl creates a dictionary containing all bodies in the simulation
+- Euler_mainv2.jl contains the code to perform an Euler integration on the bodies in the simulation
+- Eulerv2.jl performs ONE integration step for ONE body
+- get_planet_data.jl obtains data on any body stored in the NASA Horizons database
+- particles.jl creates a uniform distribution of identical particles in a spherical shell
+- save.jl saves the position history of each body into jld2 files
+- Verlet_main.jl performs Verlet integration on all bodies in the simulation
 
-- main.jl has main code that integrates all others
-- get_planet_data.jl downloads planet data from JPL horizons
-- physical_eqns.jl obtains velocity and acceleration data given positions and velocity
-- Leap_Frog.jl integrates system using Leap Frog algorithm
-  
-## To Do List:
-- Figure out how to efficiently parse through JPL Horizons
-- Perform integrations on the data
-- compare the final integration state to actual data
-- Repeat above for various step sizes and integration times
-- create fully fleshed tests
-- input more assertions for reality checks in methods
-- implement more solar system objects than just the planets as to have a significant difference between tests
+## Quick Use
+- Open a julia terminal
+- Create a list of names of the NASA Horizons Sun/Planets you want to include
+- Run download_planet_data_from_list() from the get_planet_data.jl to download data from horizons
+- Run either Verlet_main() or Euler_main() to perform a Verlet or Euler integration
 
 ## Class Project Schedule
 - Project proposal (due Sept 6)
