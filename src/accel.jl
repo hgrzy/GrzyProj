@@ -46,7 +46,7 @@ function get_accel(body1::Body, body2::Body)
     Calculates acceleration of body2 caused by body 1
     """
     r = body2.position - body1.position
-    @assert r!=0
+    @assert norm(r)!=0
     a_cur = -G*body2.mass.*r./(norm(r).^3)
     return a_cur
 end

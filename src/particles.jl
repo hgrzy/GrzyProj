@@ -1,5 +1,3 @@
-using StaticArrays
-
 
 
 function create_rand_particles(num_particles::Int64=0,min_radius::Float64=0, max_radius::Float64=0, mass::Float64=0,min_vel::Float64=0, max_vel::Float64=0)
